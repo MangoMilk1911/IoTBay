@@ -74,8 +74,7 @@
             <div class="form-group">
                 <label for="addressLine1">Address</label>
                 <input type="text" class="form-control" name="addressLine1" id="addressLine1"
-                       placeholder="Sherman 42 Wallaby Way, Sydney"
-                       required>
+                       placeholder="Sherman 42 Wallaby Way, Sydney">
             </div>
             <div class="form-group">
                 <label for="addressLine2">Address 2 (Optional)</label>
@@ -83,13 +82,13 @@
             </div>
             <div class="form-group">
                 <label for="suburb">Suburb</label>
-                <input type="text" class="form-control" name="suburb" id="suburb" required>
+                <input type="text" class="form-control" name="suburb" id="suburb">
             </div>
             <div class="form-group">
                 <div class="row">
                     <div class="col">
                         <label for="state">State</label>
-                        <select class="form-control" name="state" id="state" required>
+                        <select class="form-control" name="state" id="state">
                             <option>NSW</option>
                             <option>QLD</option>
                             <option>ACT</option>
@@ -102,7 +101,30 @@
                     </div>
                     <div class="col-4">
                         <label for="postcode">Postcode</label>
-                        <input type="number" class="form-control" name="postcode" id="postcode" required>
+                        <input type="number" class="form-control" name="postcode" id="postcode">
+                    </div>
+                </div>
+            </div>
+
+            <%--Payment --%>
+            <h4 class="mt-5">Billing Information</h4>
+            <div class="form-group">
+                <label for="cardNumber">Card Number</label>
+                <input type="number" class="form-control" name="cardNumber" id="cardNumber" >
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col">
+                        <label for="expiryMonth">Expiry Month</label>
+                        <input type="text" class="form-control" name="expiryMonth" id="expiryMonth">
+                    </div>
+                    <div class="col">
+                        <label for="expiryYear">Expiry Year</label>
+                        <input type="text" class="form-control" name="expiryYear" id="expiryYear">
+                    </div>
+                    <div class="col">
+                        <label for="cvvNumber">CVV</label>
+                        <input type="password" class="form-control" name="cvvNumber" id="cvvNumber">
                     </div>
                 </div>
             </div>
