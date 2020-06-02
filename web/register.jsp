@@ -74,7 +74,7 @@
             <div class="form-group">
                 <label for="addressLine1">Address</label>
                 <input type="text" class="form-control" name="addressLine1" id="addressLine1"
-                       placeholder="Sherman 42 Wallaby Way, Sydney">
+                       placeholder="Sherman 42 Wallaby Way, Sydney" required>
             </div>
             <div class="form-group">
                 <label for="addressLine2">Address 2 (Optional)</label>
