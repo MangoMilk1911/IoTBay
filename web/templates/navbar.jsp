@@ -24,6 +24,7 @@
                 <% } %>
             </div>
 
+            <a class="nav-item nav-link" href="${pageContext.request.contextPath}/checkout.jsp">Shopping Cart</a>
             <% if (user != null) { %>
             <a class="btn btn-outline-dark my-2 my-sm-0" href="${pageContext.request.contextPath}/logout.jsp"
                role="button">Logout</a>
