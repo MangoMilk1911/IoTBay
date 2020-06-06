@@ -29,6 +29,14 @@
         <url-pattern>/RegistrationServlet</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>PaymentServlet</servlet-name>
+        <servlet-class>uts.isd.controller.PaymentInfoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PaymentServlet</servlet-name>
+        <url-pattern>/PaymentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>ReportingServlet</servlet-name>
         <servlet-class>uts.isd.controller.reporting.ReportingServlet</servlet-class>
      </servlet>
@@ -43,14 +51,6 @@
     <servlet-mapping>
         <servlet-name>ReportFormServlet</servlet-name>
         <url-pattern>/ReportFormServlet</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>PaymentServlet</servlet-name>
-        <servlet-class>uts.isd.controller.EditPaymentInfoServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>PaymentServlet</servlet-name>
-        <url-pattern>/PaymentServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
