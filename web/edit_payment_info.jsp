@@ -72,6 +72,10 @@
             </div>
         </div>
     </div>
+
+    <div>
+        <a href="checkout.jsp"><button type="button" class="btn btn-info">Update</button></a>
+    </div>
 </div>
 
 

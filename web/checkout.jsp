@@ -41,24 +41,25 @@
     </table>
 
     <div>
-        <h5>Subtotal</h5>
-        <p>Sub Total Inc GST: </p>
-        <p>Shipping Charge: </p>
-        <p>Total: </p>
-    </div>
-
-    <div>
-        <h5>User Details</h5>
+        <h4 class="mt-5">Details</h4>
         <p>${user.firstName} ${user.lastName}</p>
-        <p>${user.email}</p>
-        <p>${user.address}</p>
+        <p>Email: ${user.email}</p>
+        <p>Phone number: ${user.contactNumber}</p>
+        <p>Address: ${user.address}</p>
         <p>
             <a href="edit_payment_info.jsp"><button type="button" class="btn btn-info">Edit Payment Info</button></a>
         </p>
     </div>
-    <p>
-        <a href="index.jsp"><button type="button" class="btn btn-info">Checkout</button></a>
-    </p>
+
+    <div>
+        <h4 class="mt-5">Subtotal</h4>
+        <p>Sub Total Inc GST: </p>
+        <p>Shipping Charge: </p>
+        <p>Total: </p>
+        <p>
+            <a href="index.jsp"><button type="button" class="btn btn-info">Checkout</button></a>
+        </p>
+    </div>
 </div>
 
 
