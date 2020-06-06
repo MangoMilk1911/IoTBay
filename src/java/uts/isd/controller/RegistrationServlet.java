@@ -2,6 +2,7 @@ package uts.isd.controller;
 
 import uts.isd.model.*;
 import uts.isd.model.dao.CustomerDAO;
+import uts.isd.model.dao.DAOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +15,9 @@ import java.util.LinkedList;
 public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        // Create validator for the request
+        Validator validator = new Validator(request);
+
         // Get form details
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
@@ -21,52 +25,59 @@ public class RegistrationServlet extends HttpServlet {
         String contactNumber = request.getParameter("contactNumber");
         String password = request.getParameter("password");
 
-        Address address = new Address(
-                request.getParameter("addressLine1"),
-                request.getParameter("addressLine2"),
-                request.getParameter("suburb"),
-                request.getParameter("postcode"),
-                request.getParameter("state")
-        );
+        // Run validation checks
+        validator.checkEmpty(email, password)
+                .validateEmail(email)
+                .validatePassword(password)
+                .validateName(firstName + " " + lastName);
 
-        PaymentInformation paymentInfo = new PaymentInformation(
-                request.getParameter("cardNumber"),
-                request.getParameter("cvvNumber"),
-                request.getParameter("expiryMonth"),
-                request.getParameter("expiryYear")
-        );
+        if (validator.failed()) {
+            request.getRequestDispatcher("/register.jsp").include(request, response);
+            return;
+        }
 
-        // Try to log user in
-        // The user ID starts null and will be auto-generated and set in CustomerDAO.save()
+        Address address = new Address();
+        address.setAddressLine1(request.getParameter("addressLine1"));
+        address.setAddressLine2(request.getParameter("addressLine1"));
+        address.setSuburb(request.getParameter("suburb"));
+        address.setPostcode(request.getParameter("postcode"));
+        address.setState(request.getParameter("state"));
+
+        // Payment Info is set on purchase page.
+        PaymentInformation paymentInfo = new PaymentInformation();
+
+        LinkedList<Order> orders = new LinkedList<>();
+
+        // Create new Customer Object.
+        // The Account ID starts null and will be auto-generated and set in CustomerDAO.save()
+        Customer newCustomer = new Customer();
+        newCustomer.setFirstName(firstName);
+        newCustomer.setLastName(lastName);
+        newCustomer.setEmail(email);
+        newCustomer.setPassword(password);
+        newCustomer.setContactNumber(contactNumber);
+        newCustomer.setActive(true);
+        newCustomer.setAddress(address);
+        newCustomer.setPaymentInfo(paymentInfo);
+        newCustomer.setOrders(orders);
+        newCustomer.setAnonymous(false);
+
         try {
-            LinkedList<Order> newOrderList = new LinkedList<>();
-            Customer newCustomer = new Customer(
-                    null,
-                    firstName,
-                    lastName,
-                    email,
-                    password,
-                    contactNumber,
-                    true,
-                    address,
-                    paymentInfo,
-                    newOrderList,
-                    false
-            );
-
             // Write new customer to database
             CustomerDAO.save(newCustomer);
 
             // Log the customer in
             request.getSession().setAttribute("user", newCustomer);
             request.setAttribute("success", true);
-
-            // STILL NEED TO DO VALIDATION
-
-        } catch (SQLException err) {
-            request.setAttribute("errorRegister", "Error accessing database.");
+        }
+        catch (DAOException err) {
+            request.setAttribute("registerErr", err.getMessage());
+        }
+        catch (SQLException err) {
+            request.setAttribute("registerErr", "Error accessing database.");
             err.printStackTrace();
-        } finally {
+        }
+        finally {
             request.getRequestDispatcher("/register.jsp").include(request, response);
         }
     }

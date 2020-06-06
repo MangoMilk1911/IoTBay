@@ -1,18 +1,18 @@
 INSERT INTO ACCOUNTS (EMAIL, F_NAME, L_NAME, CONTACT_NUMBER, ACCOUNT_TYPE, PASSWORD, IS_ACTIVE)
-VALUES ('john.smith@gmail.com', 'John', 'Smith', '0438278971', 'C', 'password123', true),
-       ('odio@sed.ca', 'Nehru', 'Rivers', '0438278972', 'C', 'password123', true),
-       ('Sed@iderat.edu', 'Craig', 'Estrada', '0438278973', 'C', 'password123', true),
-       ('risus.quis@tortorat.org', 'Judah', 'Erickson', '0438278975', 'C', 'password123', true),
-       ('Nullam@augue.org', 'Hakeem', 'Townsend', '0493750271', 'C', 'password123', true),
-       ('consectetuer.adipiscing@Donecnibh.org', 'Leroy', 'Hoffman', '0438278976', 'C', 'password123', true),
-       ('ante.Nunc@vestibulum.com', 'Zachery', 'Acosta', '0438278977', 'C', 'password123', true),
-       ('dis.parturient.montes@malesuadafames.edu', 'Upton', 'Phelps', '0438278978', 'C', 'password123', true),
-       ('elementum.sem@utnullaCras.net', 'Barrett', 'Lewis', '0438278979', 'C', 'password123', true),
-       ('vulputate.velit@quisaccumsanconvallis.com', 'Stuart', 'Kramer', '0438278980', 'C', 'password123', true),
-       ('egestas.Duis.ac@Morbinon.edu', 'Tyler', 'Owens', '0438278981', 'C', 'password123', true),
-       ('nicholsonK@iotbay.com', 'Kirby', 'Nicholson', '0404285927', 'S', 'jSev*UkN1DJr', true),
-       ('farleyS@iotbay.com', 'Lenore', 'Farley', '04030385162', 'S', 'ilOh%@hQ&$LZ', true),
-       ('talleyS@iotbay.com', 'Stephanie', 'Talley', '0404477143', 'S', 'jAupTO!0DnHt', true)
+VALUES ('john.smith@gmail.com', 'John', 'Smith', '0438 278 971', 'C', 'password123', true),
+       ('odio@sed.ca', 'Nehru', 'Rivers', '0438 278 972', 'C', 'password123', true),
+       ('Sed@iderat.edu', 'Craig', 'Estrada', '0438 278 973', 'C', 'password123', true),
+       ('risus.quis@tortorat.org', 'Judah', 'Erickson', '0438 278 975', 'C', 'password123', true),
+       ('Nullam@augue.org', 'Hakeem', 'Townsend', '0493 750 271', 'C', 'password123', true),
+       ('consectetuer.adipiscing@Donecnibh.org', 'Leroy', 'Hoffman', '0438 278 976', 'C', 'password123', true),
+       ('ante.Nunc@vestibulum.com', 'Zachery', 'Acosta', '0438 278 977', 'C', 'password123', true),
+       ('dis.parturient.montes@malesuadafames.edu', 'Upton', 'Phelps', '0438 278 978', 'C', 'password123', true),
+       ('elementum.sem@utnullaCras.net', 'Barrett', 'Lewis', '0438 278 979', 'C', 'password123', true),
+       ('vulputate.velit@quisaccumsanconvallis.com', 'Stuart', 'Kramer', '0438 278 980', 'C', 'password123', true),
+       ('egestas.Duis.ac@Morbinon.edu', 'Tyler', 'Owens', '0438 278 981', 'C', 'password123', true),
+       ('nicholsonK@iotbay.com', 'Kirby', 'Nicholson', '0404 285 927', 'S', 'jSev*UkN1DJr', true),
+       ('farleyS@iotbay.com', 'Lenore', 'Farley', '0403 038 516', 'S', 'ilOh%@hQ&$LZ', true),
+       ('talleyS@iotbay.com', 'Stephanie', 'Talley', '0404 477 143', 'S', 'jAupTO!0DnHt', true)
 ;
 
 INSERT INTO CUSTOMERS (ID, ADDRESS_LINE_1, ADDRESS_LINE_2, SUBURB, POSTCODE, STATE, IS_ANONYMOUS)
@@ -51,7 +51,10 @@ VALUES (1, '5244 8746 5799 2270', '832', '04', '21'),
 
 INSERT INTO PRODUCT_CATEGORIES (CATEGORY, ARCHIVED)
 VALUES ('Resistors', false),
-       ('Capacitors', false)
+       ('Capacitors', false),
+       ('Actuators', false),
+       ('Sensors', false),
+       ('Raspberry Pi', false)
 ;
 
 INSERT INTO PRODUCTS (NAME, STOCK, PRICE, CATEGORY, DESCRIPTION, ARCHIVED)
@@ -61,9 +64,8 @@ VALUES ('0.5 Ohm Resistor', 10, 0.20, 'Resistors', 'This is a 0.5 ohn resistor',
        ('0.5 force sensitive resistor sensor', 25, 8.50, 'Resistors',
         'This is a force sensitive resistor with a round, 0.5" diameter, sensing area.', false),
        ('2.5 micro farahs capacitor', 20, 1.50, 'Capacitors', 'This is a micro farahs capacitor', false),
-       ('1/4W resistor kit', 30, 12.00, 'Resistors', 'Resistor kit comes with 25 each of 20 different resistor values ',
-        false),
-       ('ceramic capacitor', 22, 3.50, 'Capacitors', 'This is a ceramic capacitor', false),
+       ('1/4W resistor kit', 30, 12.00, 'Resistors', 'Resistor kit comes with 25 each of 20 different resistor values', false),
+       ('ceramic capacitor', 16, 3.50, 'Capacitors', 'This is a ceramic capacitor', false),
        ('tantalum capacitor', 20, 4.00, 'Capacitors', 'This is a tantalum capacitor', false),
        ('plastic film capacitor', 20, 1.50, 'Capacitors', 'This is a plastic film capacitor', false),
        ('aluminium capacitor', 30, 5.50, 'Capacitors', 'This is a aluminium capacitor', false),
@@ -76,19 +78,22 @@ VALUES ('0.5 Ohm Resistor', 10, 0.20, 'Resistors', 'This is a 0.5 ohn resistor',
        ('voltage led load resistor', 20, 1.50, 'Resistors', 'This is a voltage led load resistor', false),
        ('high temp electrolytic capacitors', 80, 7.00, 'Capacitors', 'This is a high temp capacitor', false),
        ('microfarad run capacitor', 20, 1.50, 'Capacitors', 'This is a microfarad run capacitor', false),
-       ('plastic capacitor', 10, 0.50, 'Capacitors', 'This is a plastic capacitor', false)
+       ('plastic capacitor', 10, 0.50, 'Capacitors', 'This is a plastic capacitor', false),
+       ('Colour sensor', 18, 12.80, 'Sensors', 'RGB color sensor', false),
+       ('Light sensor', 23, 7.99, 'Sensors', 'Photon (light) sensor', false),
+       ('12V 100mm Linear Actuator', 3, 24.99, 'Actuators', '12V 50-100mm Linear Actuator', false)
 ;
 
-INSERT INTO ORDERS (DATE_TIME, SHIPPING_ADDRESS, TOTAL, CUSTOMER_ID, TRACKING_ID, CARD_NUMBER)
-VALUES ('2020-01-01 00:00:05', '21 Shipping Ave--Waterloo-2017-NSW', 23.99, 2, '0', '5244 8746 5799 2270'),
-       ('2020-03-04 00:01:05', '30 Shipping Ave--Waterloo-3105-QLD', 28.00, 2, '1', '5244 8746 5799 2271'),
-       ('2020-06-05 00:04:05', '21 Madison Ave--Wetherill-2164-NSW', 24.00, 3, '2', '5244 8746 5799 2270'),
-       ('2020-09-10 00:06:05', '54 Lexington St--Gregory-2570-NSW', 23.99, 5, '3', '5588298188999519'),
-       ('2020-01-12 00:03:05', '66 Dakota Ave--Emerald-2174-NSW', 29.00, 6, '4', '547 25471 14513 607'),
-       ('2020-02-01 00:06:05', '78 Renwick St--Gledswood-2570-NSW', 30.00, 9, '5', '549151 905253 2532'),
-       ('2020-06-01 00:07:05', '29 Belmont Ave--Edmondson-2174-NSW', 25.99, 8, '6', '550 84054 11825 588'),
-       ('2020-08-01 00:04:05', '28 Lincoln Ave--Willowdale-2174-NSW', 29.99, 7, '8', '5483 5394 8183 4028'),
-       ('2020-02-01 00:04:05', '30 Easton St--Catherine-2570-NSW', 33.99, 4, '9', '5301127140287588')
+INSERT INTO ORDERS (ORDERED_ON, SHIPPING_ADDRESS, STATUS, TOTAL, CUSTOMER_ID, TRACKING_ID)
+VALUES ('2020-01-01 00:00:05', '21 Shipping Ave--Waterloo-2017-NSW', 'shipped', 23.99, 2, '0'),
+       ('2020-03-04 00:01:05', '30 Shipping Ave--Waterloo-3105-QLD', 'shipped', 28.00, 2, '1'),
+       ('2020-06-05 00:04:05', '21 Madison Ave--Wetherill-2164-NSW', 'shipped', 24.00, 3, '2'),
+       ('2020-09-10 00:06:05', '54 Lexington St--Gregory-2570-NSW', 'shipped', 23.99, 5, '3'),
+       ('2020-01-12 00:03:05', '66 Dakota Ave--Emerald-2174-NSW', 'shipped', 29.00, 6, '4'),
+       ('2020-02-01 00:06:05', '78 Renwick St--Gledswood-2570-NSW', 'shipped', 30.00, 9, '5'),
+       ('2020-06-01 00:07:05', '29 Belmont Ave--Edmondson-2174-NSW', 'shipped', 25.99, 8, '6'),
+       ('2020-08-01 00:04:05', '28 Lincoln Ave--Willowdale-2174-NSW', 'shipped', 29.99, 7, '8'),
+       ('2020-02-01 00:04:05', '30 Easton St--Catherine-2570-NSW', 'shipped', 33.99, 4, '9')
 ;
 
 INSERT INTO ORDER_LINE (ORDER_ID, PRODUCT_ID, QUANTITY_ORDERED, PRICE)
@@ -96,11 +101,13 @@ VALUES (1, 1, 5, 0.20),
        (1, 2, 8, 0.50),
        (1, 3, 10, 0.70),
        (1, 4, 2, 1.50),
+       (1, 20, 3, 12.80),
+       (1, 21, 8, 21.85),
        (2, 1, 1, 0.20),
        (2, 2, 1, 0.50),
        (2, 3, 4, 0.70),
        (3, 6, 6, 12.00),
-       (3, 7, 3, 3.50),
+       (3, 7, 15, 3.50),
        (4, 3, 4, 0.70),
        (5, 3, 2, 0.70),
        (6, 5, 5, 1.50),
@@ -109,10 +116,13 @@ VALUES (1, 1, 5, 0.20),
        (8, 9, 6, 1.50),
        (8, 7, 2, 3.50),
        (9, 3, 2, 0.70),
-       (9, 4, 5, 1.50)
+       (9, 4, 5, 1.50),
+       (9, 20, 3, 12.80)
 ;
 
 INSERT INTO REPORTS (NAME, DESCRIPTION, START_DATE, END_DATE)
 VALUES ('January 2020 Sales Report', 'Total sales for January', '2020-01-01 00:00:00', '2020-01-31 23:59:59'),
-       ('02 2020 Sales Report', 'Feb Sales report', '2020-02-01 00:00:00', '2020-02-29 23:59:59')
+       ('Q1 2020 Sales', 'Sales report for Q1 of 2020', '2020-01-01 00:00:00', '2020-03-31 23:59:59'),
+       ('2019 Sales', 'Sales report for 2019', '2019-01-01 00:00:00', '2019-12-31 23:59:59'),
+       ('2020 Sales', 'Sales report for 2020', '2020-01-01 00:00:00', '2020-12-31 23:59:59')
 ;
