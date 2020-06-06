@@ -25,8 +25,10 @@
                 <% } %>
             </div>
 
-            <a class="nav-item nav-link" href="${pageContext.request.contextPath}/checkout.jsp">Shopping Cart</a>
             <% if (user != null) { %>
+            <div>
+                <a class="btn btn-outline-light my-2 my-sm-0" href="${pageContext.request.contextPath}/checkout.jsp">Shopping Cart</a>
+            </div>
             <a class="btn btn-outline-light my-2 my-sm-0" href="${pageContext.request.contextPath}/logout.jsp"
                role="button">Logout</a>
             <% } else { %>

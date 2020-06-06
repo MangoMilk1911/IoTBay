@@ -13,6 +13,7 @@
     Customer user = (Customer) session.getAttribute("user");
 %>
 
+
 <head>
     <title>Checkout</title>
 </head>

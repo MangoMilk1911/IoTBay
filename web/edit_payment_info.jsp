@@ -13,6 +13,14 @@
 </head>
 <jsp:include page="templates/header.jsp"/>
 
+<c:if test="${successEdit}">
+    <div class="alert alert-success my-4" role="alert">
+        Account has successfully been updated.<br>
+
+        <a class="text-info" href="checkout.jsp">Go back to Checkout</a>
+    </div>
+</c:if>
+
 <div>
     <%--Shipping--%>
     <form action="EditPaymentInfoServlet" method="post">
@@ -37,7 +45,8 @@
             <div class="row">
                 <div class="col">
                     <label for="state">State</label>
-                    <select class="form-control" name="state" id="state" value="${customerDetails.address.state}"required>
+                    <select class="form-control" name="state" id="state" value="${customerDetails.address.state}"
+                            required>
                         <option>NSW</option>
                         <option>QLD</option>
                         <option>ACT</option>
@@ -84,11 +93,10 @@
         </div>
 
         <div>
-            <a href="EditPaymentInfoServlet">
-                <button type="button" class="btn btn-info">Update</button>
-            </a>
+            <button type="submit" class="btn btn-info">Update</button>
         </div>
+    </form>
 </div>
-</form>
+
 
 <jsp:include page="templates/footer.jsp"/>
