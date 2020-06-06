@@ -52,6 +52,14 @@
         <servlet-name>ReportFormServlet</servlet-name>
         <url-pattern>/ReportFormServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>EditPaymentInfoServlet</servlet-name>
+        <servlet-class>uts.isd.controller.EditPaymentInfoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditPaymentInfoServlet</servlet-name>
+        <url-pattern>/EditPaymentInfoServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

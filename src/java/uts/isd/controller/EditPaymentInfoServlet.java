@@ -32,7 +32,7 @@ public class EditPaymentInfoServlet extends HttpServlet {
             err.printStackTrace();
         }
         finally {
-            request.getRequestDispatcher("/logs.jsp").include(request, response);
+            request.getRequestDispatcher("/edit_payment_info.jsp").include(request, response);
         }
     }
 

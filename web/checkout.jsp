@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="uts.isd.model.Customer" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%
     Customer user = (Customer) session.getAttribute("user");
@@ -41,16 +42,22 @@
     </table>
 
     <div>
-        <h4 class="mt-5">Details</h4>
-        <p>${user.firstName} ${user.lastName}</p>
-        <p>Email: ${user.email}</p>
-        <p>Phone number: ${user.contactNumber}</p>
-        <p>Address: ${user.address}</p>
-        <p>Credit Card: ${user.cardNumber}</p>
-        <p>
-            <a href="edit_payment_info.jsp"><button type="button" class="btn btn-info">Edit Payment Info</button></a>
-            <a href="edit_payment_info.jsp"><button type="button" class="btn btn-info">Delete</button></a>
-        </p>
+        <c:if test="${user.customer}">
+            <h4 class="mt-5">Details</h4>
+            <p>${user.firstName} ${user.lastName}</p>
+            <p>Email: ${user.email}</p>
+            <p>Phone number: ${user.contactNumber}</p>
+            <p>Address: ${user.address.addressLine1}</p>
+            <p>Credit Card: ${user.paymentInfo.cardNumber}</p>
+            <p>
+                <a href="EditPaymentInfoServlet">
+                    <button type="button" class="btn btn-info">Edit Payment Info</button>
+                </a>
+                <a href="EditPaymentInfoServlet">
+                    <button type="button" class="btn btn-info">Delete</button>
+                </a>
+            </p>
+        </c:if>
     </div>
 
     <div>
@@ -59,7 +66,9 @@
         <p>Shipping Charge: </p>
         <p>Total: </p>
         <p>
-            <a href="index.jsp"><button type="button" class="btn btn-info">Checkout</button></a>
+            <a href="index.jsp">
+                <button type="button" class="btn btn-info">Checkout</button>
+            </a>
         </p>
     </div>
 </div>
