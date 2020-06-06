@@ -46,8 +46,10 @@
         <p>Email: ${user.email}</p>
         <p>Phone number: ${user.contactNumber}</p>
         <p>Address: ${user.address}</p>
+        <p>Credit Card: ${user.cardNumber}</p>
         <p>
             <a href="edit_payment_info.jsp"><button type="button" class="btn btn-info">Edit Payment Info</button></a>
+            <a href="edit_payment_info.jsp"><button type="button" class="btn btn-info">Delete</button></a>
         </p>
     </div>
 
