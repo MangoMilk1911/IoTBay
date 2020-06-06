@@ -5,6 +5,7 @@ import uts.isd.model.Address;
 import uts.isd.model.Customer;
 import uts.isd.model.PaymentInformation;
 import uts.isd.model.dao.CustomerDAO;
+import uts.isd.model.dao.DAOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -38,20 +39,19 @@ public class EditPaymentInfoServlet extends HttpServlet {
     //doPost for updating Data
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        Address address = new Address(
-                request.getParameter("addressLine1"),
-                request.getParameter("addressLine2"),
-                request.getParameter("suburb"),
-                request.getParameter("postcode"),
-                request.getParameter("state")
-        );
+        Address address = new Address();
+        address.setAddressLine1(request.getParameter("addressLine1"));
+        address.setAddressLine2(request.getParameter("addressLine1"));
+        address.setSuburb(request.getParameter("suburb"));
+        address.setPostcode(request.getParameter("postcode"));
+        address.setState(request.getParameter("state"));
 
-        PaymentInformation paymentInfo = new PaymentInformation(
-                request.getParameter("cardNumber"),
-                request.getParameter("cvvNumber"),
-                request.getParameter("expiryMonth"),
-                request.getParameter("expiryYear")
-        );
+
+        PaymentInformation paymentInfo = new PaymentInformation();
+        paymentInfo.setCardNumber(request.getParameter("cardNumber"));
+        paymentInfo.setCvvNumber(request.getParameter("cvvNumber"));
+        paymentInfo.setExpiryMonth(request.getParameter("expiryMonth"));
+        paymentInfo.setExpiryYear(request.getParameter("expiryYear"));
 
         //Update and store the new data into the DAO
 
