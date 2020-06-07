@@ -10,6 +10,15 @@
 </head>
 <jsp:include page="templates/header.jsp"/>
 
+<c:if test="${not empty param.failUpdate}">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <p class="mb-0"><strong>Can't update cart! </strong>We don't have enough of that item left!</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</c:if>
+
 <c:choose>
     <c:when test="${empty cart}">
         <div class="text-center">
@@ -103,7 +112,7 @@
                         <form class="col-2 text-center form mb-0" action="order/UpdateCartItemServlet" method="post">
                             <input type="hidden" name="ID" value="${lineItem.product.ID}">
                             <input class="text-center pl-3 rounded border w-50" type="number" name="quantity"
-                                   value="${lineItem.quantity}" min="0"/>
+                                   value="${lineItem.quantity}" min="1"/>
                             <br>
                             <button type="submit" class="btn btn-link">Update</button>
                         </form>

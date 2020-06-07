@@ -16,9 +16,16 @@ public class UpdateCartItemServlet extends HttpServlet {
         int quantity = Integer.parseInt(request.getParameter("quantity"));
 
         LinkedList<OrderLineItem> cart = (LinkedList<OrderLineItem>) session.getAttribute("cart");
+
         for (OrderLineItem lineItem : cart) {
             if (lineItem.getProduct().getID() == ID)
+                if (quantity > lineItem.getProduct().getStock()) {
+                    response.sendRedirect("../cart.jsp?failUpdate=true");
+                    return;
+                }
+
                 lineItem.setQuantity(quantity);
+                return;
         }
 
         session.setAttribute("cart", cart);

@@ -193,6 +193,14 @@
         <servlet-name>PlaceOrderServlet</servlet-name>
         <url-pattern>/order/PlaceOrderServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>OrderDetailsServlet</servlet-name>
+        <servlet-class>uts.isd.controller.order.OrderDetailsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderDetailsServlet</servlet-name>
+        <url-pattern>/order/OrderDetailsServlet</url-pattern>
+    </servlet-mapping>
 
     <session-config>
         <session-timeout>

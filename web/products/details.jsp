@@ -136,7 +136,7 @@
                                             onclick="document.getElementById('quantity').stepUp(-1)">-
                                     </button>
                                 </div>
-                                <input type="number" id="quantity" value="1" min="0" required name="quantity"
+                                <input type="number" id="quantity" value="1" min="1" required name="quantity"
                                        class="form-control border-dark text-center pl-4">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-dark" type="button"
