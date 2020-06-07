@@ -69,6 +69,7 @@ public class EditPaymentInfoServlet extends HttpServlet {
             Account account = (Account) session.getAttribute("user");
             Customer customerDetails = CustomerDAO.get(account.getEmail(), account.getPassword());
             request.setAttribute("customerDetails", customerDetails);
+            session.setAttribute("user", user);
         } catch (DAOException err) {
             request.setAttribute("loginErr", err.getMessage());
         } catch (SQLException err) {

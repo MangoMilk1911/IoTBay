@@ -25,7 +25,8 @@ public class DeletePaymentServlet extends HttpServlet {
 
         try {
             CustomerDAO.update(user);
-           session.setAttribute("user", user);
+            request.setAttribute("successDelete", true);
+            session.setAttribute("user", user);
         } catch (DAOException err) {
             request.setAttribute("loginErr", err.getMessage());
         } catch (SQLException err) {
