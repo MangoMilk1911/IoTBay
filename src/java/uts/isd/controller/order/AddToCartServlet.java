@@ -33,28 +33,22 @@ public class AddToCartServlet extends HttpServlet {
             if (existingLineItem != null) {
                 int currentQuantity = existingLineItem.getQuantity();
                 existingLineItem.setQuantity(currentQuantity + quantity);
+            } else {
+                OrderLineItem lineItem = new OrderLineItem();
 
-                session.setAttribute("cart", cart);
+                lineItem.setProduct(product);
+                lineItem.setQuantity(quantity);
 
-                return;
+                cart.add(lineItem);
             }
-
-            OrderLineItem lineItem = new OrderLineItem();
-
-            lineItem.setProduct(product);
-            lineItem.setQuantity(quantity);
-
-            cart.add(lineItem);
 
             session.setAttribute("cart", cart);
 
             response.sendRedirect("../products/ProductDetailsServlet?ID=" + ID + "&successAdd=true");
-        }
-        catch (DAOException err) {
+        } catch (DAOException err) {
             request.setAttribute("cartAddErr", err.getMessage());
             response.sendRedirect("../products/ProductDetailsServlet?ID=" + ID + "&error=true");
-        }
-        catch (SQLException err) {
+        } catch (SQLException err) {
             request.setAttribute("cartAddErr", err.getMessage());
             err.printStackTrace();
             response.sendRedirect("../products/ProductDetailsServlet?ID=" + ID + "&error=true");
