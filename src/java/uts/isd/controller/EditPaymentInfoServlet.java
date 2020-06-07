@@ -63,7 +63,7 @@ public class EditPaymentInfoServlet extends HttpServlet {
 
 
         try {
-            CustomerDAO.update((user));
+            CustomerDAO.update(user);
             request.setAttribute("successEdit", true);
             Account account = (Account) session.getAttribute("user");
             Customer customerDetails = CustomerDAO.get(account.getEmail(), account.getPassword());
