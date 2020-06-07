@@ -124,6 +124,23 @@ public class CustomerDAO {
         int rowsChanged = updateSt.executeUpdate();
         if (rowsChanged == 0)
             throw new DAOException("Failed to update Customer details. Please try again.");
+
+        PaymentInformation paymentInfo = customer.getPaymentInfo();
+
+        String paymentInfoInsertQuery =
+                "UPDATE PAYMENT_INFORMATION SET CARD_NUMBER = ?, CVV_NUMBER = ?, EXPIRY_MONTH = ?, EXPIRY_YEAR = ? " +
+                "WHERE CUSTOMER_ID = " + customer.getID();
+
+        PreparedStatement updatePaymentInfoSt = DAOUtils.prepareStatement(paymentInfoInsertQuery, false,
+                paymentInfo.getCardNumber(),
+                paymentInfo.getCvvNumber(),
+                paymentInfo.getExpiryMonth(),
+                paymentInfo.getExpiryYear()
+        );
+
+        rowsChanged = updatePaymentInfoSt.executeUpdate();
+        if (rowsChanged == 0)
+            throw new DAOException("Failed to update Customer payment info. Please try again.");
     }
 
     // Helpers
