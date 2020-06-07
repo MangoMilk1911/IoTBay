@@ -19,20 +19,26 @@ public class DeletePaymentServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession();
+
         Customer user = (Customer) session.getAttribute("user");
+
         user.setAddress(new Address());
         user.setPaymentInfo(new PaymentInformation());
 
         try {
             CustomerDAO.update(user);
-            request.setAttribute("successDelete", true);
             session.setAttribute("user", user);
-        } catch (DAOException err) {
-            request.setAttribute("loginErr", err.getMessage());
-        } catch (SQLException err) {
-            request.setAttribute("loginErr", "Error accessing database.");
+
+            request.setAttribute("successDelete", true);
+        }
+        catch (DAOException err) {
+            request.setAttribute("deleteErr", err.getMessage());
+        }
+        catch (SQLException err) {
+            request.setAttribute("deleteErr", "Error accessing database.");
             err.printStackTrace();
-        } finally {
+        }
+        finally {
             request.getRequestDispatcher("/checkout.jsp").include(request, response);
         }
     }

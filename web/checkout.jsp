@@ -14,9 +14,13 @@
 </head>
 <jsp:include page="templates/header.jsp"/>
 
-<c:if test="${successDelete}">
-    <div class="alert alert-success my-4" role="alert">
-        Payment Method has been Successfully Deleted<br>
+<!--Delete-->
+<c:if test="${not empty successDelete}">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <p class="mb-0">Payment Information deleted successfully!</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
 </c:if>
 
@@ -52,7 +56,7 @@
             <p>Address: ${user.address.addressLine1}</p>
             <p>Credit Card: ${user.paymentInfo.cardNumber}</p>
             <p>
-                <a href="EditPaymentInfoServlet" class="btn btn-info">Edit Payment Info</a>
+                <a href="edit_payment_info.jsp" class="btn btn-info">Edit Payment Info</a>
             </p>
             <form action="DeletePaymentServlet" method="post">
                 <button type="submit" class="btn btn-info">Delete</button>

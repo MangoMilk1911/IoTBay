@@ -1,6 +1,7 @@
 package uts.isd.controller.payment;
 
 import uts.isd.controller.Validator;
+import uts.isd.controller.product.AddProductServlet;
 import uts.isd.model.Account;
 import uts.isd.model.Address;
 import uts.isd.model.Customer;
@@ -17,23 +18,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class EditPaymentInfoServlet extends HttpServlet {
-    //doGet for initialData
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            HttpSession session = request.getSession();
-            Account account = (Account) session.getAttribute("user");
-            Customer customerDetails = CustomerDAO.get(account.getEmail(), account.getPassword());
-            request.setAttribute("customerDetails", customerDetails);
-        } catch (DAOException err) {
-            request.setAttribute("loginErr", err.getMessage());
-        } catch (SQLException err) {
-            request.setAttribute("loginErr", "Error accessing database.");
-            err.printStackTrace();
-        } finally {
-            request.getRequestDispatcher("/edit_payment_info.jsp").include(request, response);
-        }
-    }
-
     //doPost for updating Data
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -52,30 +36,36 @@ public class EditPaymentInfoServlet extends HttpServlet {
         String expiryYear = request.getParameter("expiryYear");
         String cvvNumber = request.getParameter("cvvNumber");
 
-        user.getAddress().setAddressLine1(addressLine1);
-        user.getAddress().setAddressLine2(addressLine2);
-        user.getAddress().setSuburb(suburb);
-        user.getAddress().setPostcode(postcode);
-        user.getAddress().setState(state);
-        user.getPaymentInfo().setCardNumber(cardNumber);
-        user.getPaymentInfo().setCvvNumber(cvvNumber);
-        user.getPaymentInfo().setExpiryMonth(expiryMonth);
-        user.getPaymentInfo().setExpiryYear(expiryYear);
+        Address address = user.getAddress();
+
+        address.setAddressLine1(addressLine1);
+        address.setAddressLine2(addressLine2);
+        address.setSuburb(suburb);
+        address.setPostcode(postcode);
+        address.setState(state);
+
+        PaymentInformation paymentInfo = user.getPaymentInfo();
+
+        paymentInfo.setCardNumber(cardNumber);
+        paymentInfo.setCvvNumber(cvvNumber);
+        paymentInfo.setExpiryMonth(expiryMonth);
+        paymentInfo.setExpiryYear(expiryYear);
 
 
         try {
             CustomerDAO.update(user);
-            request.setAttribute("successEdit", true);
-            Account account = (Account) session.getAttribute("user");
-            Customer customerDetails = CustomerDAO.get(account.getEmail(), account.getPassword());
-            request.setAttribute("customerDetails", customerDetails);
             session.setAttribute("user", user);
-        } catch (DAOException err) {
-            request.setAttribute("loginErr", err.getMessage());
-        } catch (SQLException err) {
-            request.setAttribute("loginErr", "Error accessing database.");
+
+            request.setAttribute("successEdit", true);
+        }
+        catch (DAOException err) {
+            request.setAttribute("editErr", err.getMessage());
+        }
+        catch (SQLException err) {
+            request.setAttribute("editErr", "Error accessing database.");
             err.printStackTrace();
-        } finally {
+        }
+        finally {
             request.getRequestDispatcher("/edit_payment_info.jsp").include(request, response);
         }
     }
