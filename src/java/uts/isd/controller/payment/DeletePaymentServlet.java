@@ -1,4 +1,4 @@
-package uts.isd.controller;
+package uts.isd.controller.payment;
 
 import uts.isd.model.Account;
 import uts.isd.model.Address;

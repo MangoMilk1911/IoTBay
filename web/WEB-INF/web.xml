@@ -95,7 +95,7 @@
     <!--Reporting-->
     <servlet>
         <servlet-name>PaymentServlet</servlet-name>
-        <servlet-class>uts.isd.controller.EditPaymentInfoServlet</servlet-class>
+        <servlet-class>uts.isd.controller.payment.EditPaymentInfoServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>PaymentServlet</servlet-name>
@@ -121,7 +121,7 @@
     <!--Payment-->
     <servlet>
         <servlet-name>EditPaymentInfoServlet</servlet-name>
-        <servlet-class>uts.isd.controller.EditPaymentInfoServlet</servlet-class>
+        <servlet-class>uts.isd.controller.payment.EditPaymentInfoServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>EditPaymentInfoServlet</servlet-name>
@@ -129,7 +129,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>DeletePaymentServlet</servlet-name>
-        <servlet-class>uts.isd.controller.DeletePaymentServlet</servlet-class>
+        <servlet-class>uts.isd.controller.payment.DeletePaymentServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DeletePaymentServlet</servlet-name>
