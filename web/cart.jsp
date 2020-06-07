@@ -99,7 +99,7 @@
                             </c:choose>
                         </div>
 
-                        <form class="col-2 text-center form mb-0" action="order/UpdateCartServlet" method="post">
+                        <form class="col-2 text-center form mb-0" action="order/UpdateCartItemServlet" method="post">
                             <input type="hidden" name="ID" value="${lineItem.product.ID}">
                             <input class="text-center pl-3 rounded border w-50" type="number" name="quantity"
                                    value="${lineItem.quantity}" min="0"/>

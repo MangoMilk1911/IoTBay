@@ -177,6 +177,14 @@
         <servlet-name>RemoveFromCartServlet</servlet-name>
         <url-pattern>/order/RemoveFromCartServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>UpdateCartItemServlet</servlet-name>
+        <servlet-class>uts.isd.controller.order.UpdateCartItemServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateCartItemServlet</servlet-name>
+        <url-pattern>/order/UpdateCartItemServlet</url-pattern>
+    </servlet-mapping>
 
     <session-config>
         <session-timeout>
