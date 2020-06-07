@@ -152,6 +152,24 @@
         <url-pattern>/products/DeleteProductServlet</url-pattern>
     </servlet-mapping>
 
+    <!--Order-->
+    <servlet>
+        <servlet-name>AddToCartServlet</servlet-name>
+        <servlet-class>uts.isd.controller.order.AddToCartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddToCartServlet</servlet-name>
+        <url-pattern>/order/AddToCartServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ClearCartServlet</servlet-name>
+        <servlet-class>uts.isd.controller.order.ClearCartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ClearCartServlet</servlet-name>
+        <url-pattern>/order/ClearCartServlet</url-pattern>
+    </servlet-mapping>
+
     <session-config>
         <session-timeout>
             30
