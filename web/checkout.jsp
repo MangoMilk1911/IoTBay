@@ -46,13 +46,11 @@
             <p>Address: ${user.address.addressLine1}</p>
             <p>Credit Card: ${user.paymentInfo.cardNumber}</p>
             <p>
-                <a href="EditPaymentInfoServlet">
-                    <button type="button" class="btn btn-info">Edit Payment Info</button>
-                </a>
-                <a href="EditPaymentInfoServlet">
-                    <button type="button" class="btn btn-info">Delete</button>
-                </a>
+                <a href="EditPaymentInfoServlet" class="btn btn-info">Edit Payment Info</a>
             </p>
+            <form action="DeletePaymentServlet" method="post">
+                <button type="submit" class="btn btn-info">Delete</button>
+            </form>
         </c:if>
     </div>
 

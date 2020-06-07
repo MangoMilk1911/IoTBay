@@ -127,6 +127,14 @@
         <servlet-name>EditPaymentInfoServlet</servlet-name>
         <url-pattern>/EditPaymentInfoServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>DeletePaymentServlet</servlet-name>
+        <servlet-class>uts.isd.controller.DeletePaymentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeletePaymentServlet</servlet-name>
+        <url-pattern>/DeletePaymentServlet</url-pattern>
+    </servlet-mapping>
 
     <!--Product-->
     <servlet>
