@@ -14,6 +14,12 @@
 </head>
 <jsp:include page="templates/header.jsp"/>
 
+<c:if test="${successDelete}">
+    <div class="alert alert-success my-4" role="alert">
+        Payment Method has been Successfully Deleted<br>
+    </div>
+</c:if>
+
 <div class="max-w-md">
     <h1 class="font-weight-bold">Shopping Cart</h1>
     <table class="table">
