@@ -8,8 +8,7 @@
 <%@ page import="uts.isd.controller.reporting.*" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
@@ -63,7 +62,16 @@
                             <br>
                             <br>
                             <h2>New Sales Report</h2>
-                            <jsp:include page="/reportForm.jsp"/>
+                            <c:choose>
+                                <c:when test="${user.admin}">
+                                    <jsp:include page="/reportForm.jsp"/>
+                                </c:when>
+
+                                <c:otherwise>
+                                    <p class="font-weight-light">If you would like a new report to be created, please contact your system administrator with your requirements.</p>
+                                </c:otherwise>
+                            </c:choose>
+                           
                         </div>
                     </div>
                 </div>
@@ -72,4 +80,4 @@
     </c:choose>
 
     <jsp:include page="templates/footer.jsp"/>
-</html>
+

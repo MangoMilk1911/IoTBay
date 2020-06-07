@@ -8,6 +8,7 @@ import uts.isd.model.dao.AccountDAO;
 import uts.isd.model.dao.CustomerDAO;
 import uts.isd.model.dao.DAOException;
 import uts.isd.model.dao.StaffDAO;
+import uts.isd.model.dao.UserAccessDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +26,7 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         // Run validation checks
-        validator.checkEmpty(email, password)
+        validator.checkEmptyEmailPass(email, password)
                 .validateEmail(email)
                 .validatePassword(password);
 
@@ -41,7 +42,12 @@ public class LoginServlet extends HttpServlet {
             Account account = (accountType == 'C') ?
                     CustomerDAO.get(email, password) :
                     StaffDAO.get(email, password);
-
+            
+            if(account.isActive() == false){
+                request.setAttribute("loginErr", "Account disabled by Administrator.");
+                return;
+            }
+            UserAccessDAO.save(account.getID(),"login");
             request.getSession().setAttribute("user", account);
         }
         catch (DAOException err) {

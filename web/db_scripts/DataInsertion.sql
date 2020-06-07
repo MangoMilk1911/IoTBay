@@ -10,9 +10,10 @@ VALUES ('john.smith@gmail.com', 'John', 'Smith', '0438 278 971', 'C', 'password1
        ('elementum.sem@utnullaCras.net', 'Barrett', 'Lewis', '0438 278 979', 'C', 'password123', true),
        ('vulputate.velit@quisaccumsanconvallis.com', 'Stuart', 'Kramer', '0438 278 980', 'C', 'password123', true),
        ('egestas.Duis.ac@Morbinon.edu', 'Tyler', 'Owens', '0438 278 981', 'C', 'password123', true),
-       ('nicholsonK@iotbay.com', 'Kirby', 'Nicholson', '0404 285 927', 'S', 'jSev*UkN1DJr', true),
-       ('farleyS@iotbay.com', 'Lenore', 'Farley', '0403 038 516', 'S', 'ilOh%@hQ&$LZ', true),
-       ('talleyS@iotbay.com', 'Stephanie', 'Talley', '0404 477 143', 'S', 'jAupTO!0DnHt', true)
+       ('nicholsonK@iotbay.com', 'Kirby', 'Nicholson', '0404 285 927', 'S', 'testpass1', true),
+       ('farleyS@iotbay.com', 'Lenore', 'Farley', '0403 038 516', 'S', 'anotherpass1', true),
+       ('talleyS@iotbay.com', 'Stephanie', 'Talley', '0404 477 143', 'S', 'mypassword4321', true),
+       ('admin@test.com', 'Mike', 'Wozowski', '0123 456 789', 'S', 'lol123', true)
 ;
 
 INSERT INTO CUSTOMERS (ID, ADDRESS_LINE_1, ADDRESS_LINE_2, SUBURB, POSTCODE, STATE, IS_ANONYMOUS)
@@ -32,7 +33,18 @@ VALUES (1, '200 Wonder St', null, 'Maroubra', '2035', 'NSW', false),
 INSERT INTO STAFF (ID, IS_ADMIN)
 VALUES (12, true),
        (13, false),
-       (14, false)
+       (14, false),
+       (15, true)
+;
+
+INSERT INTO USER_ACCESS (ACCOUNT_ID, PERFORMED_ON, ACTION)
+VALUES (1, '2020-01-01 09:34:11', 'create_account'),
+       (1, '2020-01-01 09:34:21', 'login'),
+       (1, '2020-01-01 09:37:21', 'logout'),
+       (2, '2020-01-04 10:37:31', 'login'),
+       (2, '2020-01-04 11:43:50', 'logout'),
+       (3, '2020-01-03 01:23:34', 'login'),
+       (3, '2020-01-03 01:43:56', 'logout')
 ;
 
 INSERT INTO PAYMENT_INFORMATION (CUSTOMER_ID, CARD_NUMBER, CVV_NUMBER, EXPIRY_MONTH, EXPIRY_YEAR)
