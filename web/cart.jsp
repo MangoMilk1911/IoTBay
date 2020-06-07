@@ -96,17 +96,17 @@
 
                         <form class="col-2 text-center form mb-0" action="order/UpdateCartServlet" method="post">
                             <input type="hidden" name="ID" value="${lineItem.product.ID}">
-                            <input class="text-center pl-3 mb-2 rounded border w-50" type="number" name="quantity"
+                            <input class="text-center pl-3 rounded border w-50" type="number" name="quantity"
                                    value="${lineItem.quantity}" min="0"/>
                             <br>
                             <button type="submit" class="btn btn-link">update</button>
                         </form>
 
                         <h3 class="col text-right display-5 font-weight-bold pr-0">
-                            $${lineItem.sumPrice}
+                            $<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${lineItem.sumPrice}"/>
                             <br>
-                            <small class="text-secondary" style="font-size: 0.8rem">$${lineItem.product.price} /
-                                item</small>
+                            <small class="text-secondary" style="font-size: 0.8rem">
+                                $<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${lineItem.product.price}"/> / item</small>
                         </h3>
                     </div>
 
@@ -119,10 +119,10 @@
         </c:forEach>
 
         <div class="text-right mt-5">
-            <button class="btn btn-success mb-2">Purchase</button>
             <h1>
-                <small>Total:</small> $<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${total}"/>
+                <small class="text-secondary" style="font-size: 0.6em">Total:</small> $<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${total}"/>
             </h1>
+            <button class="btn btn-success btn-lg px-5 mt-2">Purchase</button>
         </div>
     </c:otherwise>
 </c:choose>

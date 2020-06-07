@@ -1,4 +1,5 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <%--Request Scope EL Vars--%>
 <%--@elvariable id="product" type="uts.isd.model.Product"--%>
@@ -19,8 +20,6 @@
         </button>
     </div>
 </c:if>
-
-${cart}
 
 <a href="CatalogueServlet" class="d-inline-block mb-2">
     <svg class="bi bi-arrow-left mb-1" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -82,7 +81,9 @@ ${cart}
                     </div>
 
                     <div class="mb-3">
-                        <span class="price h4">$${product.price}</span>
+                        <span class="price h4">
+                            $<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${product.price}"/>
+                        </span>
                         <span class="text-muted">/ unit</span>
                     </div>
 
