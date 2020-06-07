@@ -46,7 +46,7 @@ public class OrderDAO {
                 "INSERT INTO ORDERS (CUSTOMER_ID, ORDERED_ON, SHIPPING_ADDRESS, TOTAL, STATUS, TRACKING_ID) " +
                 "VALUES (?, CURRENT_TIMESTAMP, ?, ?, ?, ?) ";
 
-        PreparedStatement orderInsertSt = DAOUtils.prepareStatement(staffInsertQuery, false,
+        PreparedStatement orderInsertSt = DAOUtils.prepareStatement(staffInsertQuery, true,
                 order.getCustomer().getID(),
                 order.getShippingAddress(),
                 total,

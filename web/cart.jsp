@@ -128,7 +128,9 @@
             <h1>
                 <small class="text-secondary" style="font-size: 0.6em">Total:</small> $<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${total}"/>
             </h1>
-            <button class="btn btn-success btn-lg px-5 mt-2 mb-5">Purchase</button>
+            <form action="order/PlaceOrderServlet" method="post">
+                <button type="submit" class="btn btn-success btn-lg px-5 mt-2 mb-5">Purchase</button>
+            </form>
         </div>
     </c:otherwise>
 </c:choose>

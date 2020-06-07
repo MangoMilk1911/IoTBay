@@ -185,6 +185,14 @@
         <servlet-name>UpdateCartItemServlet</servlet-name>
         <url-pattern>/order/UpdateCartItemServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>PlaceOrderServlet</servlet-name>
+        <servlet-class>uts.isd.controller.order.PlaceOrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PlaceOrderServlet</servlet-name>
+        <url-pattern>/order/PlaceOrderServlet</url-pattern>
+    </servlet-mapping>
 
     <session-config>
         <session-timeout>
