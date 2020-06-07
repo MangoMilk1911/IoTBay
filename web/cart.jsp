@@ -21,7 +21,12 @@
 
     <c:otherwise>
         <h1>Cart</h1>
-        <a href="products/CatalogueServlet">Continue Shopping</a>
+        <a href="CatalogueServlet" class="d-inline-block mb-2">
+            <svg class="bi bi-arrow-left mb-1" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M5.854 4.646a.5.5 0 0 1 0 .708L3.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"></path>
+                <path fill-rule="evenodd" d="M2.5 8a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"></path>
+            </svg>
+            Continue Shopping</a>
 
         <div class="row mt-4">
             <h4 class="col-8">Item</h4>
@@ -99,7 +104,7 @@
                             <input class="text-center pl-3 rounded border w-50" type="number" name="quantity"
                                    value="${lineItem.quantity}" min="0"/>
                             <br>
-                            <button type="submit" class="btn btn-link">update</button>
+                            <button type="submit" class="btn btn-link">Update</button>
                         </form>
 
                         <h3 class="col text-right display-5 font-weight-bold pr-0">
@@ -122,7 +127,7 @@
             <h1>
                 <small class="text-secondary" style="font-size: 0.6em">Total:</small> $<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${total}"/>
             </h1>
-            <button class="btn btn-success btn-lg px-5 mt-2">Purchase</button>
+            <button class="btn btn-success btn-lg px-5 mt-2 mb-5">Purchase</button>
         </div>
     </c:otherwise>
 </c:choose>
