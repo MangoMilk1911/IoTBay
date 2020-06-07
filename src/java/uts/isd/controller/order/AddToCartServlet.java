@@ -5,7 +5,6 @@ import uts.isd.model.Product;
 import uts.isd.model.dao.DAOException;
 import uts.isd.model.dao.ProductDAO;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +14,7 @@ import java.util.LinkedList;
 
 public class AddToCartServlet extends HttpServlet {
     @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, java.io.IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws java.io.IOException {
         HttpSession session = request.getSession();
         LinkedList<OrderLineItem> cart = (LinkedList<OrderLineItem>) session.getAttribute("cart");
 
@@ -24,6 +23,11 @@ public class AddToCartServlet extends HttpServlet {
 
         try {
             Product product = ProductDAO.get(ID);
+
+            if (quantity > product.getStock()) {
+                response.sendRedirect("../products/ProductDetailsServlet?ID=" + ID + "&failAdd=true");
+                return;
+            }
 
             OrderLineItem existingLineItem = productInCart(cart, product);
             if (existingLineItem != null) {
@@ -43,16 +47,17 @@ public class AddToCartServlet extends HttpServlet {
             cart.add(lineItem);
 
             session.setAttribute("cart", cart);
+
+            response.sendRedirect("../products/ProductDetailsServlet?ID=" + ID + "&successAdd=true");
         }
         catch (DAOException err) {
             request.setAttribute("cartAddErr", err.getMessage());
+            response.sendRedirect("../products/ProductDetailsServlet?ID=" + ID + "&error=true");
         }
         catch (SQLException err) {
             request.setAttribute("cartAddErr", err.getMessage());
             err.printStackTrace();
-        }
-        finally {
-            response.sendRedirect("../products/ProductDetailsServlet?ID=" + ID + "&successAdd=true");
+            response.sendRedirect("../products/ProductDetailsServlet?ID=" + ID + "&error=true");
         }
     }
 

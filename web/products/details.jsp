@@ -21,6 +21,15 @@
     </div>
 </c:if>
 
+<c:if test="${param.failAdd}">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <p class="mb-0"><strong>Can't add to cart! </strong>We don't have enough left!</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</c:if>
+
 <a href="CatalogueServlet" class="d-inline-block mb-2">
     <svg class="bi bi-arrow-left mb-1" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" d="M5.854 4.646a.5.5 0 0 1 0 .708L3.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"></path>
@@ -137,9 +146,7 @@
                             </div>
                         </div>
 
-                        <button class="btn btn-success mr-2">Buy now</button>
-
-                        <button type="submit" class="btn btn-outline-primary">
+                        <button type="submit" class="btn btn-outline-success">
                             Add to cart
                             <svg class="bi bi-cart-plus pb-1 ml-1" width="1.5rem" height="1.5rem" viewBox="0 0 16 16"
                                  fill="currentColor"
