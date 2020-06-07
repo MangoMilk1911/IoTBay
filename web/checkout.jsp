@@ -55,12 +55,17 @@
             <p>Phone number: ${user.contactNumber}</p>
             <p>Address: ${user.address.addressLine1}</p>
             <p>Credit Card: ${user.paymentInfo.cardNumber}</p>
-            <p>
-                <a href="edit_payment_info.jsp" class="btn btn-info">Edit Payment Info</a>
-            </p>
-            <form action="DeletePaymentServlet" method="post">
-                <button type="submit" class="btn btn-info">Delete</button>
-            </form>
+            <c:choose>
+                <c:when test="${empty user.paymentInfo.cardNumber || empty user.address.addressLine1}">
+                    <a href="edit_payment_info.jsp" class="btn btn-primary">Add Payment Info +</a>
+                </c:when>
+                <c:otherwise>
+                    <a href="edit_payment_info.jsp" class="btn btn-primary">Edit Payment Info</a>
+                    <form class="form-inline mt-2" action="DeletePaymentServlet" method="post">
+                        <button type="submit" class="btn btn-outline-danger">Remove Payment Info</button>
+                    </form>
+                </c:otherwise>
+            </c:choose>
         </c:if>
     </div>
 
@@ -69,11 +74,17 @@
         <p>Sub Total Inc GST: </p>
         <p>Shipping Charge: </p>
         <p>Total: </p>
-        <p>
-            <a href="index.jsp">
-                <button type="button" class="btn btn-info">Checkout</button>
-            </a>
-        </p>
+        <c:choose>
+            <c:when test="${empty user.paymentInfo.cardNumber || empty user.address.addressLine1}">
+                <button type="button" class="btn btn-primary" disabled>Checkout</button>
+                <p class="text-danger my-2">
+                    <small>You need to add valid payment information before you can purchase</small>
+                </p>
+            </c:when>
+            <c:otherwise>
+                <button type="button" class="btn btn-primary">Checkout</button>
+            </c:otherwise>
+        </c:choose>
     </div>
 </div>
 
