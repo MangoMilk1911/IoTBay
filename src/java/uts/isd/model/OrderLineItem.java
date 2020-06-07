@@ -1,6 +1,7 @@
 package uts.isd.model;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 
 public class OrderLineItem implements Serializable {
     private Product product;
@@ -15,6 +16,7 @@ public class OrderLineItem implements Serializable {
     public void setQuantity(int quantity) { this.quantity = quantity; }
 
     public double getSumPrice() {
-        return product.getPrice() * quantity;
+        DecimalFormat df = new DecimalFormat("#.##");
+        return Double.parseDouble(df.format(product.getPrice() * quantity));
     }
 }
