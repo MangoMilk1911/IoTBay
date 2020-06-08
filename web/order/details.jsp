@@ -21,19 +21,45 @@
     </div>
 </c:if>
 
+<c:if test="${successUpdate}">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <p class="mb-0">Order status updated.</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</c:if>
+
+<c:if test="${updateErr}">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <p class="mb-0">Failed to update order status.</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</c:if>
+
 <c:choose>
     <c:when test="${not empty user || user.ID == order.customer.ID || user.staff}">
-        <div class="d-flex align-items-center">
-            <h1 class="mr-auto">
-                Order #${order.ID}
-                <small class="text-secondary" style="font-size: 0.5em"><fmt:formatDate value="${order.orderedOn}"
-                                                                                       pattern="MM/dd/yyyy ' at ' HH:mm a"/></small>
-            </h1>
+        <h1 class="mr-auto">
+            Order #${order.ID}
+            <small class="text-secondary" style="font-size: 0.5em"><fmt:formatDate value="${order.orderedOn}" pattern="MM/dd/yyyy ' at ' HH:mm a"/></small>
+        </h1>
 
-            <c:if test="${user.staff}">
-                <a href="UpdateOrderStatusServlet?ID=${order.ID}">Update Status</a>
-            </c:if>
-        </div>
+        <c:if test="${user.staff}">
+            <form action="UpdateOrderStatusServlet" method="post" class="my-4">
+                <input type="hidden" name="ID" value="${order.ID}">
+                <div class="form-group">
+                    <label for="status" class="font-weight-bold text-primary d-block">Update Order Status</label>
+                    <select class="form-control w-25 d-inline" id="status" name="status">
+                        <option ${order.status == "pending" ? "selected" : ""}>pending</option>
+                        <option ${order.status == "cancelled" ? "selected" : ""}>cancelled</option>
+                        <option ${order.status == "approved" ? "selected" : ""}>approved</option>
+                    </select>
+                    <button type="submit" class="btn btn-link ml-2 mb-1">Update</button>
+                </div>
+            </form>
+        </c:if>
 
         <div class="rounded border p-3 mt-3 mb-5">
             <c:if test="${user.staff}">
@@ -44,7 +70,12 @@
                 </p>
             </c:if>
             <p>
-                <span class="rounded float-right text-white bg-info px-2 py-1 font-weight-bold mb-1">${order.status}</span>
+                <c:choose>
+                    <c:when test="${order.status == 'pending'}"><c:set var="statusColour" value="info"/></c:when>
+                    <c:when test="${order.status == 'cancelled'}"><c:set var="statusColour" value="danger"/></c:when>
+                    <c:when test="${order.status == 'approved'}"><c:set var="statusColour" value="success"/></c:when>
+                </c:choose>
+                <span class="rounded float-right text-white bg-${statusColour} px-2 py-1 font-weight-bold mb-1">${order.status}</span>
                 <strong>Status:</strong>
             </p>
             <p>

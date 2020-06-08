@@ -201,6 +201,14 @@
         <servlet-name>OrderDetailsServlet</servlet-name>
         <url-pattern>/order/OrderDetailsServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>UpdateOrderStatusServlet</servlet-name>
+        <servlet-class>uts.isd.controller.order.UpdateOrderStatusServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateOrderStatusServlet</servlet-name>
+        <url-pattern>/order/UpdateOrderStatusServlet</url-pattern>
+    </servlet-mapping>
 
     <session-config>
         <session-timeout>

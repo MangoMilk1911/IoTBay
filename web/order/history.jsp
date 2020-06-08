@@ -47,13 +47,17 @@
 
         <tbody>
         <c:forEach items="${user.orders}" var="order" varStatus="count">
+            <c:choose>
+                <c:when test="${order.status == 'pending'}"><c:set var="statusColour" value="info"/></c:when>
+                <c:when test="${order.status == 'cancelled'}"><c:set var="statusColour" value="danger"/></c:when>
+                <c:when test="${order.status == 'approved'}"><c:set var="statusColour" value="success"/></c:when>
+            </c:choose>
+
             <tr>
                 <th scope="row">#${order.ID}</th>
                 <td><fmt:formatDate value="${order.orderedOn}" pattern="MM/dd/yyyy ' at ' HH:mm a"/></td>
-                <td>${order.status}</td>
-                <td class="font-weight-bold">$<fmt:formatNumber type="number" maxFractionDigits="2"
-                                                                minFractionDigits="2"
-                                                                value="${order.total}"/></td>
+                <td class="text-${statusColour}">${order.status}</td>
+                <td class="font-weight-bold">$<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${order.total}"/></td>
                 <td><a href="OrderDetailsServlet?ID=${order.ID}">View</a></td>
             </tr>
         </c:forEach>
