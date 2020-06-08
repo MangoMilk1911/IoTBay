@@ -30,10 +30,10 @@ public class InvoiceServlet extends HttpServlet {
         catch (DAOException err) {
             request.setAttribute("editErr", err.getMessage());
         }
-        catch (SQLException err) {
-            request.setAttribute("editErr", "Error accessing database.");
-            err.printStackTrace();
-        }
+//        catch (SQLException err) {
+//            request.setAttribute("editErr", "Error accessing database.");
+//            err.printStackTrace();
+//        }
         finally {
             request.getRequestDispatcher("/invoice.jsp").include(request, response);
         }
