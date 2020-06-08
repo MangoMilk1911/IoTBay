@@ -30,8 +30,30 @@
     </div>
 </c:if>
 
-<c:forEach items="${user.orders}" var="order" varStatus="count">
-    ${order.ID}
-</c:forEach>
+<h1 class="mb-2">Order History</h1>
+
+<table id="historyTable" class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Order ID</th>
+        <th scope="col">Ordered On</th>
+        <th scope="col">Status</th>
+        <th scope="col">Total</th>
+        <th scope="col">Details</th>
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach items="${user.orders}" var="order" varStatus="count">
+        <tr>
+            <th scope="row">#${order.ID}</th>
+            <td>${order.orderedOn}</td>
+            <td>${order.status}</td>
+            <td>$${order.total}</td>
+            <td><a href="OrderDetailsServlet?ID=${order.ID}">View</a></td>
+        </tr>
+    </c:forEach>
+    </tbody>
+</table>
+
 
 <jsp:include page="../templates/footer.jsp"/>
