@@ -149,8 +149,8 @@ public class OrderDAO {
 
         order.setID(orderRs.getInt("ID"));
         order.setCustomer(customer);
-        order.setOrderedOn(orderRs.getDate("ORDERED_ON"));
-        order.setTotal(orderRs.getInt("TOTAL"));
+        order.setOrderedOn(orderRs.getTimestamp("ORDERED_ON"));
+        order.setTotal(orderRs.getDouble("TOTAL"));
         order.setTrackingID(orderRs.getString("TRACKING_ID"));
         order.setStatus(orderRs.getString("STATUS"));
         order.setShippingAddress(orderRs.getString("SHIPPING_ADDRESS"));

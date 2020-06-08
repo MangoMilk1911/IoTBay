@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class PlaceOrderServlet extends HttpServlet {
     @Override
@@ -23,12 +24,11 @@ public class PlaceOrderServlet extends HttpServlet {
         Order order = new Order();
         order.setCustomer(user);
         order.setOrderedProducts(cart);
+        order.setTrackingID("TRACK_ORD_" + ThreadLocalRandom.current().nextInt(0, 1000));
         order.setShippingAddress(user.getAddress().getAddressLine1());
 
         try {
             int newOrderID = OrderDAO.save(order);
-
-            order.setTrackingID("TRACK_ORD_#" + newOrderID);
 
             user.getOrders().add(order);
 
