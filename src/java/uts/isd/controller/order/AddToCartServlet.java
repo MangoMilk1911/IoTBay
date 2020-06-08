@@ -1,5 +1,6 @@
 package uts.isd.controller.order;
 
+import uts.isd.controller.Validator;
 import uts.isd.model.OrderLineItem;
 import uts.isd.model.Product;
 import uts.isd.model.dao.DAOException;
@@ -18,13 +19,19 @@ public class AddToCartServlet extends HttpServlet {
         HttpSession session = request.getSession();
         LinkedList<OrderLineItem> cart = (LinkedList<OrderLineItem>) session.getAttribute("cart");
 
+        // Create validator for request
+        Validator validator = new Validator(request);
+
         int ID = Integer.parseInt(request.getParameter("ID"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
 
         try {
             Product product = ProductDAO.get(ID);
 
-            if (quantity > product.getStock()) {
+            // Check if user is trying to add more than available
+            validator.validateCartUpdate(product, quantity);
+
+            if (validator.failed()) {
                 response.sendRedirect("../products/ProductDetailsServlet?ID=" + ID + "&failAdd=true");
                 return;
             }
