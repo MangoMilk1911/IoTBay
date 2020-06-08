@@ -39,6 +39,15 @@ public class AddToCartServlet extends HttpServlet {
             OrderLineItem existingLineItem = productInCart(cart, product);
             if (existingLineItem != null) {
                 int currentQuantity = existingLineItem.getQuantity();
+
+                // Check if user is trying to add more than available
+                validator.validateCartUpdate(product, currentQuantity + quantity);
+
+                if (validator.failed()) {
+                    response.sendRedirect("../products/ProductDetailsServlet?ID=" + ID + "&failAdd=true");
+                    return;
+                }
+
                 existingLineItem.setQuantity(currentQuantity + quantity);
             } else {
                 OrderLineItem lineItem = new OrderLineItem();
