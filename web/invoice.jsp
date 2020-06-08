@@ -19,10 +19,10 @@
 <h2 class="mb-5"> Search an Invoice</h2>
 
 <div class="container-fluid">
-    <form action="/IoTBay/InvoiceServlet" method="get">
+    <form action="/IoTBay/InvoiceServlet" method="POST">
         <table>
             <tr>
-                <td><input class="form-control-sm mb-2 mr-2 border border-secondary" name="productId" placeholder="Product Id">
+                <td><input class="form-control-sm mb-2 mr-2 border border-secondary" name="orderId" placeholder="Order Id">
                 </td>
             </tr>
             <tr>
@@ -40,11 +40,15 @@
         <table class="table text-dark">
 
             <tr class="d-flex table-info">
-                <th class="col">ProductID #</th>
+                <th class="col">OrderID #</th>
                 <th class="col">Email</th>
                 <th class="col">Contact Number</th>
                 <th class="col">Address</th>
                 <th class="col">Payment Info</th>
+            </tr>
+            <tr>
+                <!--Would have to make a for each loop for list of orders returned via the orderDAO -->
+                <!--for each loop -->
             </tr>
 
         </table>
