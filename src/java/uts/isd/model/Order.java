@@ -7,7 +7,7 @@ import java.util.LinkedList;
 public class Order implements Serializable {
     private int ID;
     private Customer customer;
-    private LinkedList<ProductSnapshot> orderedProducts;
+    private LinkedList<OrderLineItem> orderedProducts;
     private Date orderedOn;
     private int total;
     private String trackingID;
@@ -22,8 +22,8 @@ public class Order implements Serializable {
     public Customer getCustomer() { return customer; }
     public void setCustomer(Customer customer) { this.customer = customer; }
 
-    public LinkedList<ProductSnapshot> getOrderedProducts() { return orderedProducts; }
-    public void setOrderedProducts(LinkedList<ProductSnapshot> orderedProducts) { this.orderedProducts = orderedProducts; }
+    public LinkedList<OrderLineItem> getOrderedProducts() { return orderedProducts; }
+    public void setOrderedProducts(LinkedList<OrderLineItem> orderedProducts) { this.orderedProducts = orderedProducts; }
 
     public Date getOrderedOn() { return orderedOn; }
     public void setOrderedOn(Date orderedOn) { this.orderedOn = orderedOn; }

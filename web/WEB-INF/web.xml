@@ -186,6 +186,56 @@
         <url-pattern>/products/DeleteProductServlet</url-pattern>
     </servlet-mapping>
 
+    <!--Order-->
+    <servlet>
+        <servlet-name>AddToCartServlet</servlet-name>
+        <servlet-class>uts.isd.controller.order.AddToCartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddToCartServlet</servlet-name>
+        <url-pattern>/order/AddToCartServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ClearCartServlet</servlet-name>
+        <servlet-class>uts.isd.controller.order.ClearCartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ClearCartServlet</servlet-name>
+        <url-pattern>/order/ClearCartServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>RemoveFromCartServlet</servlet-name>
+        <servlet-class>uts.isd.controller.order.RemoveFromCartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RemoveFromCartServlet</servlet-name>
+        <url-pattern>/order/RemoveFromCartServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>UpdateCartItemServlet</servlet-name>
+        <servlet-class>uts.isd.controller.order.UpdateCartItemServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateCartItemServlet</servlet-name>
+        <url-pattern>/order/UpdateCartItemServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>PlaceOrderServlet</servlet-name>
+        <servlet-class>uts.isd.controller.order.PlaceOrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PlaceOrderServlet</servlet-name>
+        <url-pattern>/order/PlaceOrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>OrderDetailsServlet</servlet-name>
+        <servlet-class>uts.isd.controller.order.OrderDetailsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderDetailsServlet</servlet-name>
+        <url-pattern>/order/OrderDetailsServlet</url-pattern>
+    </servlet-mapping>
+
     <session-config>
         <session-timeout>
             30
