@@ -34,7 +34,7 @@
                 <a class="nav-item nav-link ml-auto mr-3" href="${pageContext.request.contextPath}/cart.jsp">Cart</a>
 
                 <% if (user != null) { %>
-                <form class="form-inline mb-0 px-4" action="${pageContext.request.contextPath}/LogoutServlet" method="post">
+                <form class="form-inline mb-0" action="${pageContext.request.contextPath}/LogoutServlet" method="post">
                     <button type="submit" class="btn btn-outline-light my-2 my-sm-0">Logout</button>
                 </form>
                 <% } else { %>
