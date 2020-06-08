@@ -30,30 +30,66 @@
     </div>
 </c:if>
 
-<h1 class="mb-2">Order History</h1>
+<h1 class="mb-4">Order History</h1>
 
-<table id="historyTable" class="table table-striped">
-    <thead>
-    <tr>
-        <th scope="col">Order ID</th>
-        <th scope="col">Ordered On</th>
-        <th scope="col">Status</th>
-        <th scope="col">Total</th>
-        <th scope="col">Details</th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach items="${user.orders}" var="order" varStatus="count">
+<div class="fix-table">
+
+    <table class="table table-striped history-table">
+        <thead class="table-info">
         <tr>
-            <th scope="row">#${order.ID}</th>
-            <td>${order.orderedOn}</td>
-            <td>${order.status}</td>
-            <td>$${order.total}</td>
-            <td><a href="OrderDetailsServlet?ID=${order.ID}">View</a></td>
+            <th scope="col bg-info">Order ID</th>
+            <th scope="col">Ordered On</th>
+            <th scope="col">Status</th>
+            <th scope="col">Total</th>
+            <th scope="col">Details</th>
         </tr>
-    </c:forEach>
-    </tbody>
-</table>
+        </thead>
 
+        <tbody>
+        <c:forEach items="${user.orders}" var="order" varStatus="count">
+            <tr>
+                <th scope="row">#${order.ID}</th>
+                <td><fmt:formatDate value="${order.orderedOn}" pattern="MM/dd/yyyy ' at ' HH:mm a"/></td>
+                <td>${order.status}</td>
+                <td class="font-weight-bold">$<fmt:formatNumber type="number" maxFractionDigits="2"
+                                                                minFractionDigits="2"
+                                                                value="${order.total}"/></td>
+                <td><a href="OrderDetailsServlet?ID=${order.ID}">View</a></td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</div>
+
+
+<style>
+    .history-table th, td {
+        text-align: center;
+    }
+
+    .fix-table {
+        display: flex;
+        flex-flow: column;
+        width: 100%;
+    }
+
+    .fix-table thead {
+        flex: 0 0 auto;
+    }
+
+    .fix-table tbody {
+        max-height: 53vh;
+        flex: 1 1 auto;
+        display: block;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .fix-table tr {
+        width: 100%;
+        display: table;
+        table-layout: fixed;
+    }
+</style>
 
 <jsp:include page="../templates/footer.jsp"/>
