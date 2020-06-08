@@ -17,10 +17,15 @@
         <div class="d-flex align-items-center">
             <h1 class="mr-auto">
                 Order #${order.ID}
-                <small class="text-secondary" style="font-size: 0.5em"><fmt:formatDate value="${order.orderedOn}"
-                                                                                       pattern="MM/dd/yyyy ' at ' HH:mm a"/></small>
+                <small class="text-secondary" style="font-size: 0.5em"><fmt:formatDate value="${order.orderedOn}" pattern="MM/dd/yyyy ' at ' HH:mm a"/></small>
             </h1>
-            <p class="rounded text-white bg-info px-2 py-1 font-weight-bold">${order.status}</p>
+
+            <div class="text-center">
+                <p class="rounded text-white bg-info px-2 py-1 font-weight-bold mb-1">${order.status}</p>
+                <c:if test="${user.staff}">
+                    <a href="UpdateOrderStatusServlet?ID=${order.ID}">Update Status</a>
+                </c:if>
+            </div>
         </div>
 
         <div class="rounded border p-3 mt-3 mb-5">
