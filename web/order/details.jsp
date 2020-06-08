@@ -12,26 +12,40 @@
 </head>
 <jsp:include page="../templates/header.jsp"/>
 
+<c:if test="${param.successAdd}">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <p class="mb-0"><strong>Congrats! </strong>Order place successfully!</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</c:if>
+
 <c:choose>
     <c:when test="${not empty user || user.ID == order.customer.ID || user.staff}">
         <div class="d-flex align-items-center">
             <h1 class="mr-auto">
                 Order #${order.ID}
-                <small class="text-secondary" style="font-size: 0.5em"><fmt:formatDate value="${order.orderedOn}" pattern="MM/dd/yyyy ' at ' HH:mm a"/></small>
+                <small class="text-secondary" style="font-size: 0.5em"><fmt:formatDate value="${order.orderedOn}"
+                                                                                       pattern="MM/dd/yyyy ' at ' HH:mm a"/></small>
             </h1>
 
-            <div class="text-center">
-                <p class="rounded text-white bg-info px-2 py-1 font-weight-bold mb-1">${order.status}</p>
-                <c:if test="${user.staff}">
-                    <a href="UpdateOrderStatusServlet?ID=${order.ID}">Update Status</a>
-                </c:if>
-            </div>
+            <c:if test="${user.staff}">
+                <a href="UpdateOrderStatusServlet?ID=${order.ID}">Update Status</a>
+            </c:if>
         </div>
 
         <div class="rounded border p-3 mt-3 mb-5">
+            <c:if test="${user.staff}">
+                <p>
+                    <strong>Customer:</strong>
+                    <span
+                        class="float-right">${order.customer.ID} (${order.customer.firstName } ${order.customer.lastName})</span>
+                </p>
+            </c:if>
             <p>
-                <strong>Customer:</strong>
-                <span class="float-right">${order.customer.ID} (${order.customer.firstName } ${order.customer.lastName})</span>
+                <span class="rounded float-right text-white bg-info px-2 py-1 font-weight-bold mb-1">${order.status}</span>
+                <strong>Status:</strong>
             </p>
             <p>
                 <strong>Shipped To:</strong>
@@ -74,7 +88,8 @@
                                                value="${lineItem.sumPrice}"/>
                             <br>
                             <small class="text-secondary" style="font-size: 0.8rem">
-                                $<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${lineItem.product.price}"/> / item
+                                $<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2"
+                                                   value="${lineItem.product.price}"/> / item
                             </small>
                         </h3>
                     </div>
@@ -88,7 +103,10 @@
         </c:forEach>
 
         <h1 class="text-right mt-5">
-            <small class="text-secondary" style="font-size: 0.6em">Total:</small> $<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${order.total}"/>
+            <small class="text-secondary" style="font-size: 0.6em">Total:</small> $<fmt:formatNumber type="number"
+                                                                                                     maxFractionDigits="2"
+                                                                                                     minFractionDigits="2"
+                                                                                                     value="${order.total}"/>
         </h1>
     </c:when>
 
