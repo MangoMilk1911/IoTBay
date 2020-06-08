@@ -23,7 +23,7 @@
                     Profile</a>
                 <a class="nav-item nav-link" href="${pageContext.request.contextPath}/LogsServlet">Logs</a>
                 <c:if test="${user.customer}">
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/InvoiceServlet">Invoice</a>
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/invoice.jsp">Invoice</a>
                 </c:if>
                 <c:if test="${user.staff}">
                     <a class="nav-item nav-link"

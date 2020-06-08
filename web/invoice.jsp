@@ -18,38 +18,91 @@
 
 <h2 class="mb-5"> Search an Invoice</h2>
 
-<div class="container-fluid">
-    <form action="/IoTBay/InvoiceServlet" method="POST">
-        <table>
-            <tr>
-                <td><input class="form-control-sm mb-2 mr-2 border border-secondary" name="orderId" placeholder="Order Id">
-                </td>
-            </tr>
-            <tr>
-                <td><input class="form-control-sm mb-2 mr-2 border border-secondary" name="date" placeholder="Date">
-                </td>
-            </tr>
-            <tr>
-                <td><button type="submit" class="btn btn-info btn-sm my-2">Search</button></td>
-            </tr>
-        </table>
-    </form>
 
-    <h2> ${user.firstName} ${user.lastName} </h2>
+<div class="container-fluid">
+    <div class="row">
+        <div class="form-group"></div>
+        <form action="/IoTBay/InvoiceServlet" method="GET">
+            <table>
+                <tr>
+                    <td>
+                        <input class="form-control-sm mb-2 mr-2 border border-secondary" name="orderId"
+                               placeholder="Order Id">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="form-control-sm mb-2 mr-2 border border-secondary" name="date" placeholder="Date">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" class="btn btn-info btn-sm my-2">Search</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <c:if test="${not empty invoiceResult}">
+            <div class="col-md-auto mx-auto pb-4 rounded text-light">
+
+                <table class="my-auto">
+                    <tr colspan="3" class="py-1">
+                        <th><h4>${user.firstName} ${user.lastName}</h4></th>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="py-1">#${invoiceResult.ID}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="py-1">Date: ${invoiceResult.orderedOn}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="py-1">Email: ${user.email}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="py-1">Contact Number: ${user.contactNumber}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="py-1">Address: ${user.address.addressLine1}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="py-1">Payment Info: ${user.paymentInfo.cardNumber}</td>
+                    </tr>
+                </table>
+            </div>
+        </c:if>
+    </div>
+</div>
+
+<h2> ${user.firstName} ${user.lastName} </h2>
     <div style="max-height: 400px;" class="table-responsive overflow-auto table-light">
         <table class="table text-dark">
 
             <tr class="d-flex table-info">
                 <th class="col">OrderID #</th>
+                <th class="col">Purchase Date</th>
                 <th class="col">Email</th>
                 <th class="col">Contact Number</th>
                 <th class="col">Address</th>
                 <th class="col">Payment Info</th>
             </tr>
-            <tr>
-                <!--Would have to make a for each loop for list of orders returned via the orderDAO -->
-                <!--for each loop -->
-            </tr>
+        </table>
+    </div>
+
+    <div style="max-height: 400px" class="table-responsive overflow-auto mb-4 table-striped table-light">
+        <table class="table text-dark">
+            <!--Would have to make a for each loop for list of orders returned via the orderDAO -->
+            <!--for each loop -->
+            <c:forEach items="${user.orders}" var="order" varStatus="count">
+                <tr class="d-flex">
+                    <td class="col">${order.ID}</td>
+                    <td class="col">${order.orderedOn}</td>
+                    <td class="col">${user.email}</td>
+                    <td class="col">${user.contactNumber}</td>
+                    <td class="col">${user.address.addressLine1}</td>
+                    <td class="col">${user.paymentInfo.cardNumber}</td>
+                </tr>
+            </c:forEach>
 
         </table>
     </div>
