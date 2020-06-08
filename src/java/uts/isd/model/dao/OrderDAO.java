@@ -34,6 +34,34 @@ public class OrderDAO {
         return orders;
     }
 
+    public static LinkedList<Order> getAllByCustomer(int customerID) throws SQLException {
+        LinkedList<Order> orders = new LinkedList<>();
+
+        String getOrdersQuery = "SELECT * FROM ORDERS WHERE CUSTOMER_ID = " + customerID;
+        PreparedStatement st = DAOUtils.prepareStatement(getOrdersQuery, false);
+        ResultSet ordersRs = st.executeQuery();
+
+        while (ordersRs.next()) {
+            orders.add(createOrderObject(ordersRs));
+        }
+
+        return orders;
+    }
+
+    public static LinkedList<Order> getAllByCustomer(Customer customer) throws SQLException {
+        LinkedList<Order> orders = new LinkedList<>();
+
+        String getOrdersQuery = "SELECT * FROM ORDERS WHERE CUSTOMER_ID = " + customer.getID();
+        PreparedStatement st = DAOUtils.prepareStatement(getOrdersQuery, false);
+        ResultSet ordersRs = st.executeQuery();
+
+        while (ordersRs.next()) {
+            orders.add(createOrderObjectWithCustomer(ordersRs, customer));
+        }
+
+        return orders;
+    }
+
     public static int save(Order order) throws SQLException, DAOException {
         LinkedList<OrderLineItem> orderedProducts = order.getOrderedProducts();
 
@@ -116,10 +144,8 @@ public class OrderDAO {
     }
 
     // Helpers
-    private static Order createOrderObject(ResultSet orderRs) throws SQLException, DAOException {
+    private static Order createOrderObjectWithCustomer(ResultSet orderRs, Customer customer) throws SQLException, DAOException {
         Order order = new Order();
-
-        Customer customer = CustomerDAO.get(orderRs.getInt("CUSTOMER_ID"));
 
         order.setID(orderRs.getInt("ID"));
         order.setCustomer(customer);
@@ -150,5 +176,10 @@ public class OrderDAO {
         order.setOrderedProducts(orderedProducts);
 
         return order;
+    }
+
+    public static Order createOrderObject(ResultSet orderRs) throws SQLException {
+        Customer customer = CustomerDAO.get(orderRs.getInt("CUSTOMER_ID"));
+        return createOrderObjectWithCustomer(orderRs, customer);
     }
 }
